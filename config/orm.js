@@ -14,7 +14,7 @@ function queryQuestionMarks(num) {
 }
 
 //Convert object key/value pairs into SQL
-function wishThisWereSequelize(obj)	{
+function conjureQuestMarks(obj)	{
 	var arr = [];
 
 	//Loop through the keys and push the key/value as a string into arr
@@ -38,15 +38,66 @@ function wishThisWereSequelize(obj)	{
   return arr.toString();
 }
 
-//Boom-chaka-laka! Using Object Relational Mapping to make an object for SQL functions
+//Boom-chaka-laka! Establishing the Object Relational Mapper to make objects for SQL functions
+var orm = {
+	//Show all table results for a particular input
+	selectAll: function(tableInput, callback)	{
+		var queryString = "SELECT * FROM " + tableInput + ";";
+		connection.query(queryString, function(err, result)	{
+			if(err)	{
+				throw err;
+			}
+			callback(result);
+		});
+	},
+	//Insert a new burger and it's values into the table
+	insertOne: function(tableName, cols, vals, callback)	{
+		//using variables to create a universal query that is a string
+		var queryString = "INSERT INTO" + tableName;
+
+		queryString += " (";
+		queryString += cols.toString();
+		queryString += ") ";
+		queryString += "VALUES (";
+		queryString += conjureQuestMarks(vals.length);
+		queryString += ") ";
+
+		console.log(queryString);
+
+		connection.query(queryString, vals, function(err, result)	{
+			if (err) {
+				throw err;
+			}
+			callback(result);
+		});
+	},
+	//Update the status of a burger
+	updateOne: function(tableName, objColVals, condition, callback)	{
+		var queryString = "UPDATE" + tableName;
+
+		queryString += " SET ";
+		queryString += objToSql(objColVals);
+		queryString += " WHERE ";
+		queryString += condition;
+
+		console.log(queryString);
+		connection.query(queryString, function(err, result)	{
+			if (err) {
+				throw err;
+			}
+			callback(result);
+		});
+	}
+};
+//Make all the ORM functions available for the controller
+module.exports =orm;
+
+
+ 
 
 
 
-function selectAll() 
 
 
-function insertOne()
 
-
-function updateOne()
 
