@@ -89,7 +89,7 @@ var orm = {
 		});
 	}
 };
-//Make all the ORM functions available for the controller
+//Make all the ORM functions available for the model and controller
 module.exports =orm;
 
 
