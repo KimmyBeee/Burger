@@ -1,34 +1,34 @@
 <div class="container">
 	<div class="row">
-		<div class="col-med">
-			<h1>Nom Nom BURGERTIME!!!</h1>
+		<div class="col-med" id="header">
+			<h1 class="title">Nom Nom BURGERTIME!!!</h1>
 			<img src="../public/assets/img/burger.png" alt="Yummo Burger Pic">		
 		</div>
 	</div>
 	<div class="row">
-		<div class="col">
+		<div class="col" id="uneaten">
 			<h2>Hmmm, which burger to nom?</h2>
 			<ul>
   				{{#each burgers}}
     				{{#unless devoured}}
-      					{{> burgers/burger-block devoured=true}}
+      					{{ burgers devoured=false}}
     				{{/unless}}
   				{{/each}}
 			</ul>
 		</div>
-		<div class="col">
+		<div class="col" id="eaten">
 			<h2>Yummmo! That was nommy!<h2>
 			<ul>
   				{{#each burgers}}
     				{{#if devoured}}
-      					{{> burgers/burger-block devoured=false}}
+      					{{ burgers devoured=true}}
     				{{/if}}
   				{{/each}}
 			</ul>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col">
+		<div class="col" id="add">
 			<h3>Eat.More.BURRRGERRRRRS!!!!</h3>
 
 			<form class="create-form">
@@ -38,10 +38,10 @@
   				</div>
   				<div class="form-group">
     				<label for="devoured">Will Nom?</label><br>
-    				<input type="radio" name="devoured" value="1" checked> Will Nom!<br>
-    				<input type="radio" name="devoured" value="0"> Nommed
+    				<input type="radio" name="devoured" value="0" checked> Will Nom!<br>
+    				<input type="radio" name="devoured" value="1"> Nommed
   				</div>
-  				<button type="submit">Add Cat</button>
+  				<button type="submit">Add Burger</button>
 			</form>
 		</div>
 	</div>

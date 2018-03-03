@@ -90,7 +90,7 @@ var orm = {
 	}
 };
 //Make all the ORM functions available for the model and controller
-module.exports =orm;
+module.exports = orm;
 
 
  
